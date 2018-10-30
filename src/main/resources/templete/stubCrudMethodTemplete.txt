@@ -1,0 +1,15 @@
+	/** get  ${entityClassName} */
+	@GetMapping(CRUD_${tableName})
+	public ResponseEntity<ResponseDetails<${entityClassName}Vo>> get${entityClassName}(@RequestBody  ${entityClassName}Vo requestObj);
+
+	/** insert  post  ${entityClassName} */
+	@PostMapping(CRUD_${tableName})
+	public ResponseEntity<ResponseDetails<${entityClassName}Vo>> insert${entityClassName}(@RequestBody  ${entityClassName}Vo requestObj);
+
+	/** update put  ${entityClassName} */
+	@PutMapping(CRUD_${tableName})
+	public ResponseEntity<ResponseDetails<${entityClassName}Vo>> update${entityClassName}( @RequestBody  ${entityClassName}Vo requestObj);
+
+	/** delete ${entityClassName} */
+	@DeleteMapping(CRUD_${tableName})
+	public ResponseEntity<ResponseDetails<Boolean>> delete${entityClassName}( @RequestBody  ${entityClassName}Vo requestObj);

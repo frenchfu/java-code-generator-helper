@@ -1,0 +1,16 @@
+public class ${entityClassName}Service {
+
+	@Autowired
+	${entityClassName}Dao dao;
+
+	public ${entityClassName} getOne(${entityClassName}Identity id ) {
+		return dao.findOne(id);
+	}
+	public ${entityClassName} save(${entityClassName} entity){
+		return dao.save(entity);
+	}
+	public void delete(${entityClassName} entity){
+		dao.delete(entity);
+	}
+
+}

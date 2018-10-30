@@ -1,0 +1,30 @@
+	/** update put  ${entityClassName} */
+	@PutMapping(CRUD_${tableName})
+	public ResponseEntity<ResponseDetails<${entityClassName}>> update${entityClassName}( @RequestBody  ${entityClassName} requestObj) {
+
+		// start log
+		log.info("===update${entityClassName} : ");
+		log.info(requestObj.toString());
+		
+		//init
+		${entityClassName} resultObj = null;
+		
+		//check exist
+		${entityClassName} checkerObj = ${serviceClassName2}.getOne(requestObj.get${entityClassName}Identity());
+		
+		//update
+		if(checkerObj != null) {
+			resultObj = ${serviceClassName2}.save(requestObj);
+		}else {
+			return Responses.status(JasmineResponseStatus.DATA_NOT_FOUND).build();
+		}
+
+
+		// end log
+		log.info("update${entityClassName} result:" + requestObj.toString());
+		log.info("update${entityClassName} ==========End");
+
+		// return
+		return Responses.ok(new ResponseDetails<${entityClassName}>().data(resultObj));
+	
+	}

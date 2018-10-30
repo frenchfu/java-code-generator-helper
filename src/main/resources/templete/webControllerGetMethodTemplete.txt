@@ -1,0 +1,27 @@
+	/** get  ${entityClassName} */
+	@GetMapping(CRUD_${tableName})
+	public ResponseEntity<ResponseDetails<AoPlyedrPrem>> get${entityClassName}(@RequestBody  ${entityClassName} requestObj) {
+
+		// start log
+		log.info("===get${entityClassName} : ");
+		log.info(requestObj.toString());
+		
+		//init
+		${entityClassName} resultObj = null;
+		
+		//get
+		resultObj = ${serviceClassName2}.getOne(requestObj.get${entityClassName}Identity());
+
+		if(resultObj == null) {
+			log.info("get${entityClassName} ==========DATA_NOT_FOUND");
+			return Responses.status(JasmineResponseStatus.DATA_NOT_FOUND).build();
+		}
+		
+		// end log
+		log.info("get${entityClassName} result:" + requestObj.toString());
+		log.info("get${entityClassName} ==========End");
+
+		// return
+		return Responses.ok(new ResponseDetails<${entityClassName}>().data(resultObj));
+	
+	}

@@ -1,0 +1,37 @@
+package tw.com.softleader.jasmine.integration.finance.service;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
+import tw.com.softleader.jasmine.integration.bs.IntegrationMappingBs;
+import tw.com.softleader.jasmine.integration.bs.IntegrationUtilBs;
+import tw.com.softleader.jasmine.integration.finance.vo.${voClassName};
+import tw.com.softleader.jasmine.integration.finance.vo.identity.${identityVoClassName};
+import tw.com.softleader.jasmine.integration.finance.universe.UniverseObj;
+
+@Service
+@Slf4j
+public class ${voClassName}Service {
+	
+	@Autowired IntegrationMappingBs mappingBs;
+	@Autowired IntegrationUtilBs utilBs;
+	
+	public ${voClassName} setiingValueTo${voClassName}(${voClassName} vo,UniverseObj universeObj ) {
+		
+		log.info("setiingValueTo${voClassName}  start");
+		log.info("universeObj: "+universeObj.toString());
+		if(vo == null) vo = new ${voClassName}();
+		if(vo.get${identityVoClassName}()== null)vo.set${identityVoClassName}(new ${identityVoClassName}());
+		${identityVoClassName} identityVo = vo.get${identityVoClassName}();
+		
+${settingValuePart}
+		
+		log.info("setiingValueTo${voClassName}  result:"+vo.toString());
+		log.info("setiingValueTo${voClassName}  end");
+		return vo;
+		
+	}
+
+}

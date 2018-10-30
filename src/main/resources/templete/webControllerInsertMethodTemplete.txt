@@ -1,0 +1,34 @@
+	/** insert  post  ${tableName} */
+	@PostMapping(CRUD_${tableName})
+	public ResponseEntity<ResponseDetails<${entityClassName}>> insert${entityClassName}(@RequestBody  ${entityClassName} requestObj) {
+		
+		try {
+			// start log
+			log.info("===insert${entityClassName} : ");
+			log.info(requestObj.toString());
+			
+			//init
+			${entityClassName} resultObj = null;
+			
+			//check exist
+			${entityClassName} checkerObj = ${serviceClassName2}.getOne(requestObj.get${entityClassName}Identity());
+			if(checkerObj!=null){
+				throw new Exception("寫入失敗 資料已存在");
+			}
+			
+			//insert
+			resultObj = ${serviceClassName2}.save(requestObj);
+
+			// end log
+			log.info("insert${entityClassName} result:" + requestObj.toString());
+			log.info("insert${entityClassName} ==========End");
+
+			// return
+			return Responses.ok(new ResponseDetails<${entityClassName}>().data(resultObj));
+		
+		}catch(Exception e) {
+			log.error("insert${entityClassName} error",e);
+			return Responses.status(JasmineResponseStatus.UNEXPECTED_EXCEPTION).build();
+		}
+		
+	}

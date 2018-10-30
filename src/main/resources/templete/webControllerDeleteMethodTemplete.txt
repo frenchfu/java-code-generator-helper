@@ -1,0 +1,29 @@
+	/** delete ${entityClassName} */
+	@DeleteMapping(CRUD_${tableName})
+	public ResponseEntity<ResponseDetails<Boolean>> delete${entityClassName}( @RequestBody  ${entityClassName} requestObj) {
+
+		// start log
+		log.info("===delete${entityClassName} : ");
+		log.info(requestObj.toString());
+		
+		//init
+		Boolean resultObj = Boolean.TRUE;
+		
+		//check exist
+		${entityClassName} checkerObj = ${serviceClassName2}.getOne(requestObj.get${entityClassName}Identity());
+		
+		//delete
+		if(checkerObj != null) {
+			${serviceClassName2}.delete(requestObj);
+		}else {
+			return Responses.status(JasmineResponseStatus.DATA_NOT_FOUND).build();
+		}
+
+		// end log
+		log.info("delete${entityClassName} result:" + requestObj.toString());
+		log.info("delete${entityClassName} ==========End");
+
+		// return
+		return Responses.ok(new ResponseDetails<Boolean>().data(resultObj));
+	
+	}
